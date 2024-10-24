@@ -42,7 +42,7 @@
       "title": "Season",
       "scale": {
         "domain": ["Summer", "Autumn", "Winter", "Spring"],
-        "range": ["#e74c3c", "#f38b66", "#4575b4", "#6ca0dc"] 
+        "range": ["#c31401", "#f38b66", "#4575b4", "#6ca0dc"] 
       },
       "legend": {"title": "Season"}
     },

@@ -36,7 +36,7 @@
       "title": "Group",
       "scale": {
         "domain": ["Departure", "Arrival"], 
-        "range": ["#e74c3c", "steelblue"]  
+        "range": ["#c31401", "steelblue"]  
       }
     }
   }

@@ -1,0 +1,149 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Switchable Heatmaps of various metrics by Month and Year with tooltips.",
+  "params": [
+    {
+      "name": "chartSelection",
+      "value": "heatmap_rpks",
+      "bind": {
+        "input": "select",
+        "options": ["heatmap_rpks", "heatmap_rpks2", "heatmap_rpks3", "heatmap_rpks4"],
+        "labels": ["Total RPKs", "Passenger Trips", "Total ASK", "Passenger Load Factor"],
+        "name": "Select Heatmap: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "transform": [{"filter": "chartSelection === 'heatmap_rpks'"}],
+      "data": {
+        "url": "datasets/heatmap_rpks.csv",
+        "format": {"type": "csv"}
+      },
+      "mark": {
+        "type": "rect",
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal"},
+        "y": {
+          "field": "Month_num",
+          "type": "ordinal",
+          "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        },
+        "color": {
+          "field": "Total_RPKs",
+          "type": "quantitative",
+          "title": "Value",  
+          "scale": {
+            "scheme": "blues"
+          }
+        },
+        "tooltip": [
+          {"field": "Year", "title": "Year"},
+          {"field": "Month_num", "title": "Month"},
+          {"field": "Total_RPKs", "title": "Total RPKs"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "chartSelection === 'heatmap_rpks2'"}],
+      "data": {
+        "url": "datasets/heatmap_rpks2.csv",
+        "format": {"type": "csv"}
+      },
+      "mark": {
+        "type": "rect",
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal"},
+        "y": {
+          "field": "Month_num",
+          "type": "ordinal",
+          "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        },
+        "color": {
+          "field": "Passenger_Trips",
+          "type": "quantitative",
+          "title": "Value", 
+          "scale": {
+            "scheme": "blues"
+          }
+        },
+        "tooltip": [
+          {"field": "Year", "title": "Year"},
+          {"field": "Month_num", "title": "Month"},
+          {"field": "Passenger_Trips", "title": "Passenger Trips"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "chartSelection === 'heatmap_rpks3'"}],
+      "data": {
+        "url": "datasets/heatmap_rpks3.csv",
+        "format": {"type": "csv"}
+      },
+      "mark": {
+        "type": "rect",
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal"},
+        "y": {
+          "field": "Month_num",
+          "type": "ordinal",
+          "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        },
+        "color": {
+          "field": "Total_ASK",
+          "type": "quantitative",
+          "title": "Value",  
+          "scale": {
+            "scheme": "blues"
+          }
+        },
+        "tooltip": [
+          {"field": "Year", "title": "Year"},
+          {"field": "Month_num", "title": "Month"},
+          {"field": "Total_ASK", "title": "Total ASK"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "chartSelection === 'heatmap_rpks4'"}],
+      "data": {
+        "url": "datasets/heatmap_rpks4.csv",
+        "format": {"type": "csv"}
+      },
+      "mark": {
+        "type": "rect",
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal"},
+        "y": {
+          "field": "Month_num",
+          "type": "ordinal",
+          "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        },
+        "color": {
+          "field": "PLF",
+          "type": "quantitative",
+          "title": "Value",  
+          "scale": {
+            "scheme": "blues"
+          }
+        },
+        "tooltip": [
+          {"field": "Year", "title": "Year"},
+          {"field": "Month_num", "title": "Month"},
+          {"field": "PLF", "title": "PLF"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "axis": {"grid": false}
+  }
+}

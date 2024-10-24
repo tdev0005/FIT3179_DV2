@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"width": "container",
+  "height": 200,
+  "description": "Chart 1",
+  "data": {"url": "datasets/chart1.csv"},
+  "transform": [
+    {
+      "calculate": "toDate(datum['yyyy.mm'])",
+      "as": "Date"
+    }
+  ],
+  "mark": "line",
+  "encoding": {
+    "x": {
+      "field": "Date",
+      "type": "temporal",
+      "title": "Date",
+      "axis": {
+        "format": "%Y-%m"
+      }
+    },
+    "y": {
+      "field": "TotalValue",
+      "type": "quantitative",
+      "title": "Average Fare",
+      "scale": {
+        "domain": [200,600]
+      }
+    }
+  }
+}

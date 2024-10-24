@@ -1,0 +1,28 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap of Total RPKs by Month and Year.",
+  "data": {
+    "url": "datasets/heatmap_rpks.csv",
+    "format": {"type": "csv"}
+  },
+  "mark": "rect",
+  "encoding": {
+    "x": {"field": "Year", "type": "ordinal"},
+    "y": {
+      "field": "Month_num",
+      "type": "ordinal",
+      "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    },
+    "color": {
+      "field": "Total_RPKs",
+      "type": "quantitative",
+      "scale": {
+        "scheme": "blues",
+        "domain":[120000000, 7500000000]
+      }
+    }
+  },
+  "config": {
+    "axis": {"grid": false}
+  }
+}

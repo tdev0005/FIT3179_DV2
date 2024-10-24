@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Flight routes between Australian cities",
+  "width": 600,
+  "height": 400,
+  "layer": [
+    {
+      "data": {
+        "url": "datasets/ABS_LGA_2011-2-2-4.json", 
+        "format": {
+          "type": "topojson",
+          "feature": "ABS_LGA_2011"
+        }
+      },
+      "projection": {
+        "type": "mercator",
+        "center": [133, -28],
+        "scale": 800
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "lightblue",
+        "stroke": "white",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"City1": "Melbourne", "City2": "Sydney", "Total_Passenger_Trips": 10000},
+          {"City1": "Melbourne", "City2": "Brisbane", "Total_Passenger_Trips": 7000},
+          {"City1": "Sydney", "City2": "Brisbane", "Total_Passenger_Trips": 5000},
+          {"City1": "Sydney", "City2": "Adelaide", "Total_Passenger_Trips": 3000},
+          {"City1": "Melbourne", "City2": "Adelaide", "Total_Passenger_Trips": 8000},
+          {"City1": "Brisbane", "City2": "Perth", "Total_Passenger_Trips": 4000}
+        ]
+      },
+      "transform": [
+        {
+          "lookup": "City1",
+          "from": {
+            "data": {
+              "values": [
+                {"city": "Melbourne", "longitude": 144.9631, "latitude": -37.8136},
+                {"city": "Sydney", "longitude": 151.2093, "latitude": -33.8688},
+                {"city": "Brisbane", "longitude": 153.0260, "latitude": -27.4705},
+                {"city": "Adelaide", "longitude": 138.6007, "latitude": -34.9285},
+                {"city": "Perth", "longitude": 115.8575, "latitude": -31.9505}
+              ]
+            },
+            "key": "city",
+            "fields": ["longitude", "latitude"]
+          },
+          "as": ["longitude1", "latitude1"]
+        },
+        {
+          "lookup": "City2",
+          "from": {
+            "data": {
+              "values": [
+                {"city": "Melbourne", "longitude": 144.9631, "latitude": -37.8136},
+                {"city": "Sydney", "longitude": 151.2093, "latitude": -33.8688},
+                {"city": "Brisbane", "longitude": 153.0260, "latitude": -27.4705},
+                {"city": "Adelaide", "longitude": 138.6007, "latitude": -34.9285},
+                {"city": "Perth", "longitude": 115.8575, "latitude": -31.9505}
+              ]
+            },
+            "key": "city",
+            "fields": ["longitude", "latitude"]
+          },
+          "as": ["longitude2", "latitude2"]
+        }
+      ],
+      "projection": {
+        "type": "mercator",
+        "center": [133, -28],
+        "scale": 800
+      },
+      "mark": "rule",
+      "encoding": {
+        "longitude": {"field": "longitude1", "type": "quantitative"},
+        "latitude": {"field": "latitude1", "type": "quantitative"},
+        "x2": {"field": "longitude2", "type": "quantitative"},
+        "y2": {"field": "latitude2", "type": "quantitative"},
+        "strokeWidth": {
+          "field": "Total_Passenger_Trips",
+          "type": "quantitative",
+          "scale": {"range": [1, 10]}
+        },
+        "tooltip": [
+          {"field": "City1", "type": "nominal", "title": "From"},
+          {"field": "City2", "type": "nominal", "title": "To"},
+          {"field": "Total_Passenger_Trips", "type": "quantitative", "title": "Passenger Trips"}
+        ]
+      }
+    }
+  ]
+}

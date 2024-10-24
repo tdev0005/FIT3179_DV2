@@ -1,0 +1,34 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A bar chart showing total values by month from a CSV file, ordered by month.",
+  "data": {
+    "url": "datasets/groupby_year.csv",
+    "format": {"type": "csv"}
+  },
+  "width": "container",
+
+  "mark": {
+    "type": "bar",
+    "color": "#4C78A8"
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "nominal",
+      "title": "Year",
+      "sort": ["2010","2011", "2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022","2023"]
+    },
+    "y": {
+      "field": "TotalValue",
+      "type": "quantitative",
+      "title": "Total Users",
+      "scale": {
+        "nice": true
+      }
+    },
+    "tooltip": [
+      {"field": "Year", "title": "Year"},
+      {"field": "TotalValue", "title": "Total Value", "format": ".2f"}  
+    ]
+  }
+}
